@@ -8,6 +8,7 @@
 </head>
 <body>
     <div id="app"></div>
+    
 
     <script>
         let number1 = 0+ Math.floor(Math.random()*11);
@@ -15,6 +16,7 @@
         let inputValue='';
         let outputText='';
         let antallPoeng = 0;
+        let buttonDisable='';
 
 
         updateView();
@@ -22,7 +24,7 @@
             document.getElementById('app').innerHTML = /*html*/`
                 <h3>Sammenligne mellom ${number1} og ${number2} og skriv riktig operator &gt;, &lt; eller =.</h3><br/>
                 <h4>${number1} <input type="text" value="${inputValue ? inputValue : ''}" oninput="inputValue=this.value"> ${number2}</h4><br/>
-                <button onclick="compare()">Submit</button><button onclick="reset()">Click for new challenge</button><br/> <br/>
+                <button onclick="compare()" ${buttonDisable}>Submit</button><button onclick="reset()">Click for new challenge</button><br/> <br/>
                 ${outputText}           
             
             `;
@@ -34,10 +36,12 @@
                 
                     antallPoeng++
                     outputText = 'Riktig svar og din totalt poengscore er ' + antallPoeng;
+                    buttonDisable= 'disabled';
                 }
                 else {
                     antallPoeng--;
                     outputText = 'Feil svar og din totalt poengscore er ' + antallPoeng;
+                    buttonDisable ='';
                 }
             
            
@@ -49,6 +53,7 @@
         function reset() {
             number1 = 0+ Math.floor(Math.random()*11);
             number2 = 0+ Math.floor(Math.random()*11);
+            buttonDisable ='';
             updateView();
 
         }
